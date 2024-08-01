@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="age-calculator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="age-calculator">
+        <div class="nav-bar">
+            <a href="https://militarymavens.com" class="nav-icon" title="Go Home"><i class="fas fa-home"></i></a>
+            <a href="https://militarymavens.github.io/bmi-calculator/" class="nav-icon" title="BMI Calculator"><i class="fas fa-weight-scale"></i></a>
+        </div>
+        <h2>Age Calculator</h2>
+        <form id="ageForm">
+            <div class="input-group">
+                <label for="dobMonth">Date of Birth:</label>
+                <div class="dob-fields">
+                    <select id="dobMonth" required>
+                        <option value="" disabled selected>Month</option>
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                    <select id="dobDay" required>
+                        <option value="" disabled selected>Day</option>
+                        <!-- Days will be populated by JavaScript -->
+                    </select>
+                    <input type="number" id="dobYear" placeholder="Year" min="1900" max="2023" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="calcDateMonth">Age at the Date of:</label>
+                <div class="calc-date-fields">
+                    <select id="calcDateMonth" required>
+                        <option value="" disabled selected>Month</option>
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                    <select id="calcDateDay" required>
+                        <option value="" disabled selected>Day</option>
+                        <!-- Days will be populated by JavaScript -->
+                    </select>
+                    <input type="number" id="calcDateYear" placeholder="Year" min="1900" max="2100" required>
+                </div>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="todayDateCheckbox">
+                <label for="todayDateCheckbox">Calculate Age to Today's Date</label>
+            </div>
+            <button type="button" id="calculateBtn">Calculate Age</button>
+            <button type="button" id="clearBtn" class="hidden">Clear & Check Again</button>
+        </form>
+        <div class="result">
+            <h3>Your Age: <span id="ageResult"></span></h3>
+        </div>
+        <p class="credit">Created by <a href="https://militarymavens.com" target="_blank">Military Mavens</a></p>
+    </div>
+    <script src="age-calculator.js"></script>
+</body>
+</html>
