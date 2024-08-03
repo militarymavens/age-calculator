@@ -166,13 +166,13 @@ button {
 /* Credit Text Styling */
 .credit {
     font-size: 0.875rem;
-    color: #7f8c8d;
+    color: black;
     text-align: center;
     margin-top: 20px;
 }
 
 .credit a {
-    color: #7f8c8d;
+    color: darkgreen;
     text-decoration: none;
 }
 
