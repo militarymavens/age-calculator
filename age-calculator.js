@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     populateDays('dobDay');
     populateDays('calcDateDay');
-    
+
     document.getElementById('calculateBtn').addEventListener('click', calculateAge);
     document.getElementById('clearBtn').addEventListener('click', clearAll);
     document.getElementById('todayDateCheckbox').addEventListener('change', handleCheckboxChange);
@@ -26,16 +26,17 @@ function calculateAge() {
     const calcDateDay = parseInt(document.getElementById('calcDateDay').value);
     const calcDateYear = parseInt(document.getElementById('calcDateYear').value);
 
-    if (!dobMonth || !dobDay || !dobYear || !calcDateMonth || !calcDateDay || !calcDateYear) {
+    if (isNaN(dobMonth) || isNaN(dobDay) || isNaN(dobYear) || isNaN(calcDateMonth) || isNaN(calcDateDay) || isNaN(calcDateYear)) {
         alert('Please enter all date fields.');
         return;
     }
 
-    const dob = new Date(dobYear, dobMonth, dobDay);
-    const calcDate = new Date(calcDateYear, calcDateMonth, calcDateDay);
+    // Adjust month values to match JavaScript Date object (0-based index for months)
+    const dob = new Date(dobYear, dobMonth - 1, dobDay);
+    const calcDate = new Date(calcDateYear, calcDateMonth - 1, calcDateDay);
 
-    if (isNaN(dob) || isNaN(calcDate)) {
-        alert('Please enter valid dates.');
+    if (dob > calcDate) {
+        alert('Date of birth cannot be after the calculation date.');
         return;
     }
 
@@ -45,8 +46,8 @@ function calculateAge() {
 
     if (days < 0) {
         months--;
-        const daysInMonth = new Date(calcDate.getFullYear(), calcDate.getMonth(), 0).getDate();
-        days += daysInMonth;
+        const prevMonthDays = new Date(calcDate.getFullYear(), calcDate.getMonth(), 0).getDate();
+        days += prevMonthDays;
     }
 
     if (months < 0) {
@@ -55,18 +56,14 @@ function calculateAge() {
     }
 
     // Display the result
-    const ageDetails = `
-        ${years} years ${months} months ${days} days
-    `;
-
-    document.getElementById('ageResult').innerHTML = ageDetails;
+    document.getElementById('ageResult').innerHTML = `${years} years ${months} months ${days} days`;
     document.getElementById('clearBtn').classList.remove('hidden');
 }
 
 function handleCheckboxChange() {
     if (document.getElementById('todayDateCheckbox').checked) {
         const today = new Date();
-        document.getElementById('calcDateMonth').value = today.getMonth();
+        document.getElementById('calcDateMonth').value = today.getMonth() + 1; // Convert to 1-based index
         document.getElementById('calcDateDay').value = today.getDate();
         document.getElementById('calcDateYear').value = today.getFullYear();
     }
